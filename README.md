@@ -16,17 +16,31 @@ The tool leverages the modern text data toolchain in Python:
 The tool also provides customizable features such as the ability to specify
 words for removal or replacement.
 
-## Setup
+## Workflow
 
-You can install the latest versions of the required Python packages using pip:
+Clone the repository:
 
 ```bash
-pip install ftfy pypdf spacy
-python3 -m spacy download en_core_web_sm
+git clone https://github.com/nanxstats/pdf-word-extraction.git
 ```
 
-Alternatively, you can install all the dependencies at once with:
+Create a [virtual environment](https://docs.python.org/3/library/venv.html)
+inside the cloned repository, activate it, and install the required Python
+packages into the virtual environment:
 
 ```bash
+cd pdf-word-extraction
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
+
+Put the PDF files under `pdf/`, run
+
+```
+python3 pdf_word_extraction.py
+```
+
+If you use VS Code, open the project and select the recommended "venv"
+Python interpreter. Edit the list of words to remove and replace in
+`pdf_word_extraction.py`, save the file and run it again in terminal.
