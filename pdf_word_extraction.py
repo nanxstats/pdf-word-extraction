@@ -112,7 +112,7 @@ word_freq = process_pdfs(directory)
 words_to_remove = [
     "placeholder_word_to_remove1",
     "placeholder_word_to_remove2",
-    "placeholder_word_to_remove3"
+    "placeholder_word_to_remove3",
 ]
 word_freq = remove_specific_words(word_freq, words_to_remove)
 
