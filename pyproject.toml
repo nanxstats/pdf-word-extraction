@@ -15,7 +15,7 @@ dependencies = [
 readme = "README.md"
 requires-python = ">= 3.8"
 
-[project.script]
+[project.scripts]
 protraitme = "pdf_word_extraction:main"
 
 [build-system]
