@@ -32,8 +32,7 @@ def get_first_impression(pdfs: list[Path], nproc: int = 1) -> pl.DataFrame:
     words_freq_df = pl.concat([df for df in words_dfs if not df.is_empty()])
     # group by and count words, and sorted by count in reverse order
     words_freq_df = (
-        words_freq_df
-        .filter(pl.col("count") > 1)
+        words_freq_df.filter(pl.col("count") > 1)
         .group_by("words")
         .agg(pl.col("count").sum())
         .sort(by="count", descending=True)
