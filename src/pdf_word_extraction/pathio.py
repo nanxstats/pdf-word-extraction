@@ -14,6 +14,7 @@ def parse_path(path: PathLike) -> Path:
 
 
 def make_dir(path: Path, parents: bool = False, exist_ok: bool = False) -> None:
+    """Make new directory."""
     if not isinstance(path, Path):
         path = parse_path(path)
 

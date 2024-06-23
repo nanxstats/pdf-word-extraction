@@ -32,7 +32,6 @@ def process_text(pdf: Path) -> pl.DataFrame:
     nlp = spacy.load("en_core_web_sm")
     doc = nlp(text)
 
-    # word_freq = defaultdict(int)
     skip_next = False
     words = pl.Series("words", [], dtype=pl.String)
     for i, token in enumerate(doc):
@@ -59,6 +58,7 @@ def process_text(pdf: Path) -> pl.DataFrame:
         ):
             continue
 
+        # in my case, token returns "|https://.." and ".https://.."
         if re.match(r"^[|.]", token.text):
             continue
 
@@ -73,6 +73,7 @@ def process_text(pdf: Path) -> pl.DataFrame:
             skip_next = True
             continue
 
+        # FIXME: perhaps we could have a chunck size to buffer
         words.append(pl.Series("word", [word]))
 
     words_df = words.value_counts()

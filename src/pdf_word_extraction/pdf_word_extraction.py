@@ -12,18 +12,23 @@ from .texter import process_text
 
 
 def get_pdfs(pdf_dir: Path) -> list[Path]:
+    """Get all PDFs from give directory."""
     pdf_files = list(pdf_dir.glob("*.pdf"))
+    # panic when no pdfs found
     if not pdf_files:
         raise ValueError("Failed to find any PDF files within {}", pdf_dir)
     return pdf_files
 
 
 def get_first_impression(pdfs: list[Path], nproc: int = 1) -> pl.DataFrame:
+    """Extract words from pdfs with frequency."""
     words_dfs: list(pl.DataFrame) = []
+    # use spawn to make independent child processes
     with get_context("spawn").Pool(processes=nproc) as pool:
         for res in pool.imap_unordered(partial(process_text), pdfs):
             words_dfs.append(res)
 
+    # merge all word freq table from eac PDF doc
     words_freq_df = pl.concat([df for df in words_dfs if not df.is_empty()])
     # group by and count words, and sorted by count in reverse order
     words_freq_df = (
