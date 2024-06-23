@@ -3,7 +3,7 @@ name = "pdf-word-extraction"
 version = "0.1.0"
 description = "Add your description here"
 authors = [
-    { name = "simo", email = "svm.zhang@gmail.com" }
+    { name = "Nan Xiao", email = "hello@nanx.me" }
 ]
 dependencies = [
     "ftfy==6.2.0",
