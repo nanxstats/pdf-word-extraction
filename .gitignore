@@ -1,1 +1,12 @@
-/venv/
+.DS_Store
+
+# python manager dir to skip
+__pycache__/
+build/
+dist/
+wheels/
+*.egg-info
+.venv
+
+# python files
+*.py[oc]

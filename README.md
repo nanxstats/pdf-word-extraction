@@ -24,23 +24,33 @@ Clone the repository:
 git clone https://github.com/nanxstats/pdf-word-extraction.git
 ```
 
-Create a [virtual environment](https://docs.python.org/3/library/venv.html)
-inside the cloned repository, activate it, and install the required Python
-packages into the virtual environment:
-
-```bash
-cd pdf-word-extraction
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-Put the PDF files under `pdf/`, run
+`pdf-word-extraction` repo uses [rye](https://rye.astral.sh/) as project manager. To run:
 
 ```
-python3 pdf_word_extraction.py
+cd "$pdf-word-extraction-repo"
+rye run protraitme -h
 ```
 
-If you use VS Code, open the project and select the recommended "venv"
-Python interpreter. Edit the list of words to remove and replace in
-`pdf_word_extraction.py`, save the file and run it again in terminal.
+
+# Command Line
+
+```
+usage: protraitme [-h] --pdf_dir DIR --outdir DIR [--me STR] [--top_n INT] [--overwrite] [--nproc INT]
+
+options:
+  -h, --help     show this help message and exit
+  --pdf_dir DIR  specify the path to directory of pdfs
+  --outdir DIR   specify the path to output directory
+  --me STR       specify a string to describe yourself [me]
+  --top_n INT    specify the top # frequent word to keep
+  --overwrite    specify to overwrite previous impression
+  --nproc INT    specify the # of pdfs to process simultaneously [1]
+```
+
+## Example
+
+```
+rye run protraitme --pdf_dir "$pdf_dir" \
+  --outdir "$outdir" \
+  --me nanx
+```
